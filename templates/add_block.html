@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Add new block</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+
+    form {
+      width: 300px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #666;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <form action="/add_block" method="POST">
+    <h1>Add new block</h1>
+    <label for="name">Recipient's name:</label>
+    <input type="text" id="name" name="name"><br><br>
+    <label for="num_coins">Num coins:</label>
+    <input type="text" id="num_coins" name="num_coins"><br><br>
+    <label for="content">Content:</label>
+    <input type="text" id="content" name="content"><br><br>
+    <input type="submit" value="Add block">
+    <p>Cancel transaction? <a href="{{ url_for('home') }}">Home page</a></p>
+  </form>
+</body>
+</html>
