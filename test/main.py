@@ -184,11 +184,11 @@ def login():
             # Giải mã mật khẩu bằng khóa bí mật RSA
             decrypted_password = rsa_decrypt(user.password, user.private_key)
         
-        if decrypted_password == password:
+            if decrypted_password == password:
 
-            # Nếu đăng nhập thành công
-            session['user_id'] = user.id  # Lưu user_id vào session
-            return redirect(url_for('home'))
+                # Nếu đăng nhập thành công
+                session['user_id'] = user.id  # Lưu user_id vào session
+                return redirect(url_for('home'))
         
         return render_template('login.html', error_message = 'block'), 401
             

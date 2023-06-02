@@ -40,6 +40,17 @@
         margin-top: 20px;
     }
 
+    .integrity_check{
+      display: inline-block;
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+      margin-top: 20px;
+    }
+
     .logout{
       display: inline-block;
       padding: 10px 20px;
@@ -63,6 +74,8 @@
 
     <a href="{{ url_for('view_history') }}" class="view_history">View history your transaction</a>
 
-    <a href="{{ url_for('logout') }}" class="logout">Logout</a>
+    <a href="{{ url_for('integrity_check') }}" class="integrity_check">Integrity check</a>
+
+    <a href="{{ url_for('logout') }}" class="logout">Log out!</a>
 </body>
 </html>

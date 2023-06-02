@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Integrity Check of Relation Database</title>
+  <style>
+    body {
+      background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .block {
+      background-color: #4CAF50;
+      padding: 20px;
+      border: 1px solid #9bc69c;
+      border-radius: 10px;
+      margin: 10px;
+      display: inline-block;
+      width: 300px;
+      text-align: left;
+    }
+    
+    .block-label {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .coin-and-proof{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .block-input {
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+      border: none;
+      background-color: #cdeacc;
+      font-size: 14px;
+      resize: none;
+      border-radius: 5px;
+      border-bottom: 1px solid #9bc69c;
+    }
+
+    .block-input-truoc{
+      width: 180px;
+      padding: 5px;
+      margin-bottom: 10px;
+      margin-right: 5px;
+      border: none;
+      background-color: #cdeacc;
+      font-size: 14px;
+      resize: none;
+      border-radius: 5px;
+      border-bottom: 1px solid #9bc69c;
+    }
+
+    .block-input-sau{
+      width: 100%;
+      padding: 5px;
+      margin-bottom: 10px;
+      margin-right: 5px;
+      border: none;
+      background-color: #cdeacc;
+      font-size: 14px;
+      resize: none;
+      border-radius: 5px;
+      border-bottom: 1px solid #9bc69c;
+    }
+
+    .integrity_check{
+      display: inline-block;
+      padding: 10px;
+      background-color: red;
+      color: #fff;
+      font-size: 14px;
+      text-decoration: none;
+      border: none;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+      margin-top: 20px;
+    }
+
+    .btn_check_integrity{
+        display: inline-block;
+        padding: 10px;
+        background-color: #7FFF00;
+        color: #000;
+        font-size: 14px;
+        border: none;
+        border-radius: 5px;
+    }
+
+    .popup {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 300px;
+      height: 100px;
+      color: #000;
+      transform: translate(-50%, -50%);
+      background-color: #f9f9f9;
+      font-family: Arial, sans-serif;
+      font-size: 16px
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+
+  <script>
+    function showPopup(message) {
+        var popup = document.getElementById("popup");
+        var popupMessage = document.getElementById("popup-message");
+        popupMessage.innerHTML = message;
+        popup.style.display = "block";
+    }
+
+    function hidePopup() {
+        var popup = document.getElementById("popup");
+        popup.style.display = "none";
+    }
+  </script>
+
+</head>
+<body>
+  <h1>Integrity Check of Relation Database</h1>
+  <form action="{{ url_for('integrity_check') }}">
+    <button class="integrity_check" type="submit">Check Integrity</button>
+  </form>
+  <div class="block-container">
+    {% for block in blocks %}
+    <div class="block">
+      <label class="block-label">Block ID {{ block.block_id }}</label> 
+      <br>
+      <br>
+      <label class="block-label">Timestamp:</label>
+      <input type="text" class="block-input" value="{{ block.timestamp }}" readonly>
+      
+      <label class="block-label">Previous Hash:</label>
+      <input type="text" class="block-input" value="{{ block.previous_hash }}" readonly>
+      
+      <label class="block-label">Hash:</label>
+      <input type="text" class="block-input" value="{{ block.hash }}" readonly>
+
+      <div class="coin-and-proof">
+        <div>
+          <label class="block-label">Recipient's name:</label>
+          <input type="text" class="block-input-truoc" value="{{ block.name }}" readonly>
+        </div>
+        
+        <div>
+          <label class="block-label">User ID:</label>
+          <input type="text" class="block-input-sau" value="{{ block.user_id }}" readonly>
+        </div>
+      </div>
+
+      <div class="coin-and-proof">
+        <div>
+          <label class="block-label">Proof:</label>
+          <input type="text" class="block-input-truoc" value="{{ block.proof }}" readonly>
+        </div>
+        
+        <div>
+          <label class="block-label">Num Coins:</label>
+          <input type="text" class="block-input-sau" value="{{ block.num_coins }}" readonly>
+        </div>
+      </div>
+      
+      <label class="block-label">Content:</label>
+      <input type="text" class="block-input" value="{{ block.content }}" readonly>
+    </div>
+    {% if loop.index % 4 == 0 %}
+    <br>
+    {% endif %}
+    {% endfor %}
+  </div>
+
+  <div id="popup" class="popup" style="display: none;">
+    <p id="popup-message"></p>
+    <button class="btn_check_integrity" onclick="hidePopup()">OK</button>
+  </div>
+
+  <script>
+    var result = "{{ result }}";
+    if (result !== "") {
+        showPopup(result);
+    }
+  </script>
+
+  <h3>Comback to home page?<a href="{{ url_for('home') }}"> Home</a></h3>
+</body>
+</html>
