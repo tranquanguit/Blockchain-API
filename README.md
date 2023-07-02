@@ -32,7 +32,7 @@ $ python app.py
 Running on http://127.0.0.1:5000
 ### Result
 This is the result after running the application
-![resultTest](./screenshots/result.jpeg)
+![resultTest](./screenshots/project-result.jpeg)
 ### Test_IQ_Result
 This is the result of my IQ test
 ![resultIQ](./screenshots/testIQ.png)
