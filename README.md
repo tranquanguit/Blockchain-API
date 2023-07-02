@@ -36,7 +36,5 @@ This is the result after running the application
 ### Test_IQ_Result
 This is the result of my IQ test
 ![resultIQ](./screenshots/testIQ.png)
-### Heroku
-
 ### Contributor
 - From: [tranquanguit](https://github.com/tranquanguit)
